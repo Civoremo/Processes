@@ -3,7 +3,7 @@
 // What happens to the variable when both the child and parent change the value of x?
 
 // 1. variable value in child process remains the same value as the initial value
-// 2. changing value dirung child process will change value on exit / same for parent
+// 2. changing value during child process will change value of child process value on exit / same for parent
 
 #include <stdio.h>
 #include <stdlib.h>
