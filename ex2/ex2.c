@@ -54,6 +54,7 @@ int main(void)
     }
 
     printf("AFTER FORK: %p \n", our_file);
+    fclose(our_file);
     
     return 0;
 }
