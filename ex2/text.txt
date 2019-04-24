@@ -1,0 +1,3 @@
+Hello World, Welcome to C! KIDS 
+Child Testing Direct String Write to File
+Hello World, Welcome to C! 

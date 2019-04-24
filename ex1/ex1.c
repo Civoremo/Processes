@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
 int main(void)
 {
@@ -22,15 +23,19 @@ int main(void)
     {
         // fork failed
         fprintf(stderr, "Fork Failed!\n");
+        exit(1);
     } else if  (our_fork == 0)
     {
         // fork successful
-        x = 150;
         printf("Child here (pid: %d), (X: %d) \n", (int) getpid(), x);
+        x = 150;
+        printf("Child, X value is now: %d \n", x);
     } else 
     {
-        // x = 125;
+        int wc = waitpid(our_fork, NULL, 0);
         printf("Parent here (pid: %d), (X: %d) \n", (int) getpid(), x);
+        x = 125;
+        printf("Parent, X value is now: %d \n", x);
     }
 
     printf("X value after fork: %d, (pid: %d) \n", x, getpid());
