@@ -27,19 +27,29 @@ int main(void)
         exit(1);
     } else if (our_fork == 0) {
         // Child Successful
+        char *our_child = "CHILD TEXT\n";
+
         printf("Child fork %p \n", our_file);
+
         fwrite(someText, sizeof(char), strlen(someText), our_file);
         fwrite(childish, sizeof(char), strlen(childish), our_file);
-        fputs("Child Testing Direct String Write to File\n", our_file);
+        fwrite(our_child, sizeof(char), strlen(our_child), our_file);
+        fputs("Child Testing Direct String Write to File\n\n", our_file);
         // puts("Child here again!");  // writes the string s and a trailing newline to stdout.
         // fclose(our_file);  // function flushes the stream pointed to by stream and closes the underlying file descriptor.
+        
         printf("Child finished writing\n");
 
     } else {
         // Parent
+        char *our_parent = "PARENT TEXT\n";
         int wc = waitpid(our_fork, NULL, 0);
+
         printf("Parent again %p \n", our_file);
+
         fwrite(someText, sizeof(char), strlen(someText), our_file);
+        fwrite(our_parent, sizeof(char), strlen(our_parent), our_file);
+
         printf("Parent finished writing\n");
     }
 
